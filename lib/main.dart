@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app/data/hive_storage.dart';
 import 'package:todo_app/data/local_storage.dart';
 import 'package:todo_app/models/task_model.dart';
 import 'package:todo_app/pages/home_page.dart';
+import 'package:todo_app/viewmodel/color_viewmodel.dart';
 
 final getIt = GetIt.instance;
 
@@ -58,7 +60,8 @@ class MyApp extends StatelessWidget {
               elevation: 0,
               backgroundColor: Colors.white,
               iconTheme: IconThemeData(color: Colors.black))),
-      home: HomePage(),
+      home: ChangeNotifierProvider(
+          create: (context) => ColorViewModel(), child: HomePage()),
     );
   }
 }
